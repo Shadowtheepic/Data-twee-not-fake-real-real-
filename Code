@@ -1,0 +1,57 @@
+#include<iostream>
+using namespace std;
+
+class Node
+{
+public:
+	int generation;
+	string name;
+	class Node* left;
+	class Node* right;
+	Node(int gen, string n);
+	void print();
+};
+
+void printTree(class Node* node);
+
+int main() {
+	cout << "hello data structures!" << endl;
+	Node* root = new Node(1, "Bartholomew, father of the cosmos,");
+
+	root->left = new Node(2, "Victor, Garflief, ");
+	root->right = new Node(2, "Jevin, gamer, ");
+
+
+	root->left->right = new Node(3, "Garflion the 1nd ");
+	root->left->left = new Node(3, "garfunkle the ");
+
+	root->right -> right = new Node(3, "Jevin the 2st (lame) ");
+	root->right->left = new Node(3, "Fortnite Jonesy");
+
+	printTree(root);
+	
+	
+}
+
+Node::Node(int gen, string n) {
+	generation = gen;
+	name = n;
+}
+
+void Node::print() {
+	cout << "Hi my name is " << name << " and I am generation " << generation << "." << endl;
+}
+
+void printTree(class Node* node) {
+	if (node == NULL)
+		return;
+	//recursive call on left node
+	printTree(node->left);
+
+	//print the info
+	cout << "Hello, I'm " << node->name << " and I'm generation " << node->generation << endl;
+
+	//recusive call on right node
+	printTree (node->right);
+
+}
